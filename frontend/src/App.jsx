@@ -524,7 +524,11 @@ function App() {
 
       {/* Footer */}
       <footer className="footer">
+<<<<<<< HEAD
         <p>Crafted with 💙 by Deepshikha</p>
+=======
+        <p>Crafted with 💙 by [Your Name]</p>
+>>>>>>> 65d5a8e6f6d75e528a373bba35d2bda2623522a5
       </footer>
     </div>
   );

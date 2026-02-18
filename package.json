@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start":"react-scripts start",
     "build":"react-scripts build",
+=======
+>>>>>>> 65d5a8e6f6d75e528a373bba35d2bda2623522a5
     "backend" : "npm --prefix backend run dev",
     "frontend" : "npm --prefix frontend run dev",
     "dev" : "concurrently npm:backend npm:frontend",
