@@ -58,3 +58,4 @@ Backend default URL: `http://localhost:5000`
 - CORS/API errors:
   - Ensure backend is running on port `5000`
   - Ensure frontend uses `VITE_API_URL` or Vite proxy
+# Expense-Tracker
