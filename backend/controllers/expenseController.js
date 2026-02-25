@@ -51,7 +51,10 @@ const addExpense = async (req, res) => {
       });
     }
 
-    const expense = new Expense(validation.data);
+    const expense = new Expense({
+      ...validation.data,
+      user: req.user._id,
+    });
     await expense.save();
 
     return res.status(201).json({
@@ -76,7 +79,7 @@ const addExpense = async (req, res) => {
 
 const getExpenses = async (req, res) => {
   try {
-    const expenses = await Expense.find().sort({ createdAt: -1 });
+    const expenses = await Expense.find({ user: req.user._id }).sort({ createdAt: -1 });
     return res.status(200).json({
       message: "Expenses fetched",
       data: expenses,
@@ -108,10 +111,11 @@ const updateExpense = async (req, res) => {
       });
     }
 
-    const updatedExpense = await Expense.findByIdAndUpdate(id, validation.data, {
-      new: true,
-      runValidators: true,
-    });
+    const updatedExpense = await Expense.findOneAndUpdate(
+      { _id: id, user: req.user._id },
+      validation.data,
+      { new: true, runValidators: true }
+    );
 
     if (!updatedExpense) {
       return res.status(404).json({
@@ -129,6 +133,7 @@ const updateExpense = async (req, res) => {
       body: req.body,
       error,
     });
+
     if (error.name === "ValidationError") {
       return res.status(400).json({
         message: "Validation failed",
@@ -153,7 +158,7 @@ const deleteExpense = async (req, res) => {
       });
     }
 
-    const deletedExpense = await Expense.findByIdAndDelete(id);
+    const deletedExpense = await Expense.findOneAndDelete({ _id: id, user: req.user._id });
 
     if (!deletedExpense) {
       return res.status(404).json({
