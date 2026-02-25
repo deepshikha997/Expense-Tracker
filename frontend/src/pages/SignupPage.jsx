@@ -2,6 +2,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
+import Typewriter from "typewriter-effect";
+
+
+
+const TYPEWRITER_LINES = [
+  "Easily manage your money.",
+  "Track control of finances.",
+  "Track your income and expenses.",
+];
 
 function SignupPage() {
   const { signup, parseApiError } = useAuth();
@@ -30,16 +39,33 @@ function SignupPage() {
       <div className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 rounded-full bg-rose-300/30 blur-3xl" />
 
       <div className="relative z-10 w-full max-w-md rounded-2xl border border-amber-200 bg-white p-8 shadow-xl">
-        <h2 className="text-center text-xl font-bold tracking-wide text-slate-900">Expense Tracker</h2>
+        <h2 className="mb-1 text-5xl font-extrabold tracking-tight text-neutral-900">Expense Tracker</h2>
 
-        <div className="mt-3 overflow-hidden rounded-md border border-amber-200 bg-amber-50 py-1">
+        {/* <div className="mt-3 overflow-hidden rounded-md border border-amber-200 bg-amber-50 py-1">
           <p className="whitespace-nowrap px-3 text-xs font-medium text-amber-700">
             Easily manage your money. Track control of finances. Manage your daily expense in one place.
           </p>
-        </div>
+        </div> */}
+        <div className="mt-2 text-sm text-center text-neutral-500 min-h-6">
+                  <Typewriter
+                  options={{
+                    strings: [
+                      "Easily manage your money.",
+                      "Track control of finances.",
+                      "Track your income and expenses.",
+                    ],
+                    autoStart: true,
+                    loop: true,
+                    delay: 55,
+                    deleteSpeed: 35,
+                    pauseFor: 1100,
+                    cursor: "|",
+                  }}
+                  />
+                </div>
 
-        <h1 className="mt-5 text-2xl font-bold text-slate-900">Create account</h1>
-        <p className="mt-2 text-sm text-slate-500">Start tracking expenses with JWT authentication.</p>
+        <h1 className="mt-5 text-3xl text-center font-bold text-slate-900">Create Account</h1>
+        <p className="mt-2 text-sm text-center text-slate-500">Start tracking your expenses</p>
 
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
           <div>
